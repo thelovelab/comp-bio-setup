@@ -100,5 +100,32 @@ As long as this `.git` directory is not removed, any previous state
 can be recovered. It is also possible to have multiple branches, but
 you can explore this functionality on your own.
 
-## GitHub (or other external repos)
+## GitHub and BitBucket
+
+git is especially useful though when you set up an external
+repository because you can share code with collaborators, and also
+this provides a way of backing up your work, in case something happens
+to your local machine.
+
+GitHub is a popular place to store code, and you can have unlimited
+*public* repositories for free. The UI on GitHub is excellent,
+allowing you to see what changes were made to files, when and by
+whom. You can also make comments, etc. Another useful website is
+Bitbucket, which offers unlimited *public* or *private* repositories
+for free. The choice is up to you, and you can move a repository from
+private to public once you feel the work is ready to be shared.
+
+Both websites have instructions for getting set up. I prefer to use
+SSH keys (as opposed to HTTPS) for interacting with external repos:
+
+* [Set up SSH key with GitHub](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+* [Set up SSH key with Bitbucket](https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html)
+
+Once you have done this, you have two choices: 
+
+1. to start by cloning an empty repo
+2. to add the external website to an existing repo on your computer
+
+GitHub and Bitbucket will both offer instructions for either of these
+choices, after you've created a new repo on the website.
 
