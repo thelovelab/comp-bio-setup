@@ -55,7 +55,7 @@ which can get confusing, but you really only need to use a few basic
 functions, which I will discuss here. You can highlight these on the
 cheat sheet and just focus on these.
 
-## Install git
+## Installing git
 
 * The easiest way to install git (and other Linux software) on a Mac is
 using [homebrew](http://brew.sh/). 
@@ -65,7 +65,7 @@ using [homebrew](http://brew.sh/).
   on a cluster, you may need to load it with `module load git` or
   something similar.
 
-### Using git locally
+## Using git locally
 
 git can be hooked up to external repositories to backup your code, but
 in its most basic form, you can use git just to keep track of code on
@@ -144,7 +144,7 @@ Note that this actually combines two smaller steps: `git fetch` and
 `git merge`. You can use these two for more fine-grained control, but
 often `git pull` is all you need.
 
-### Conflicts can happen
+## Conflicts can happen
 
 If you happened to edit the same piece of code as someone else working
 on the same file, git will tell you that there are conflicts between
