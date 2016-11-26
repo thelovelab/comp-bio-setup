@@ -129,7 +129,7 @@ Once you have done this, you have two choices:
 GitHub and Bitbucket will both offer instructions for either of these
 choices, after you've created a new repo on the website.
 
-## Pulling and pushing
+## Pulling from an external repo
 
 If you are working with others, you often want to *pull* any changes
 to the repo from the external repository, to make sure you are
@@ -143,6 +143,29 @@ git pull
 Note that this actually combines two smaller steps: `git fetch` and
 `git merge`. You can use these two for more fine-grained control, but
 often `git pull` is all you need.
+
+### Conflicts can happen
+
+If you happened to edit the same piece of code as someone else working
+on the same file, git will tell you that there are conflicts between
+your local code and the version in the external repo, and that these
+need to be resolved. This just means looking into the file or files
+with the conflicts and resolving them by fixing the code and removing
+certain marker lines. The marker lines look like:
+
+```
+blah blah blah
+<<<<<<< HEAD
+foo foo 
+=======
+bar bar
+>>>>>>> master
+```
+
+You can pick which lines need to be fixed, and then remove the lines
+with `<<<`, `===`, and `>>>`.
+
+## Pushing to an external repo
 
 After making changes or adding files, and committing, you can push
 your local changes to the external repo like so:
