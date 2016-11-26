@@ -1,4 +1,4 @@
-# Set up R, RStudio and Bioconductor
+# Set up R, RStudio, and Bioconductor
 
 It's important to have the latest software in Computational Biology
 which means updating software often. Bioconductor, for example, has
