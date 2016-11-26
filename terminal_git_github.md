@@ -100,7 +100,7 @@ As long as this `.git` directory is not removed, any previous state
 can be recovered. It is also possible to have multiple branches, but
 you can explore this functionality on your own.
 
-## GitHub and BitBucket
+## GitHub and Bitbucket as external repos
 
 git is especially useful though when you set up an external
 repository because you can share code with collaborators, and also
@@ -128,4 +128,30 @@ Once you have done this, you have two choices:
 
 GitHub and Bitbucket will both offer instructions for either of these
 choices, after you've created a new repo on the website.
+
+## Pulling and pushing
+
+If you are working with others, you often want to *pull* any changes
+to the repo from the external repository, to make sure you are
+up-to-date. You first should use `git commit` to commit any unsaved
+local changes. You can then pull down changes with:
+
+```
+git pull
+```
+
+Note that this actually combines two smaller steps: `git fetch` and
+`git merge`. You can use these two for more fine-grained control, but
+often `git pull` is all you need.
+
+After making changes or adding files, and committing, you can push
+your local changes to the external repo like so:
+
+```
+git push origin master
+```
+
+This means you want to push the *master* branch (the main branch), to
+the the *origin* repo (the external one). You can also just write `git
+push` after making these choices standard (git will prompt you).
 
