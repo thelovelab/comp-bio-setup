@@ -32,6 +32,11 @@ wget -o logfile \
 	 -P /path/to/files/
 ```
 
+If you need to convert from ERR identifiers to ftp locations, you can
+always use this function:
+
+https://gist.github.com/mikelove/f539631f9e187a8931d34779436a1c01
+
 ---
 
 **Note**: If you need to download from SRA, the link is here:
