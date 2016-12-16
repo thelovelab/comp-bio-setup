@@ -1,10 +1,11 @@
 # Set up a computer for Computational Biology
 
-1. [R, RStudio, and Bioconductor](r_bioc.md)
-2. [Terminal, git, and GitHub](terminal_git_github.md)
-3. *IGV* for exploring genomic files
-4. *knitr and rmarkdown* for reproducible analyses
-5. *FASTQC and MultiQC* for quality control of sequence data
-6. *aligning sequencing reads*
-7. *quantify transcripts with RNA-seq*
-8. ...
+* [R, RStudio, and Bioconductor](r_bioc.md)
+* [Terminal, git, and GitHub](terminal_git_github.md)
+* *knitr and rmarkdown* for reproducible analyses
+* [Downloading files](download.md) from European Nucleotide Archive
+* *FASTQC and MultiQC* for quality control of sequence data
+* *aligning sequencing reads*
+* *IGV* for exploring genomic files
+* *quantify transcripts with RNA-seq*
+* ...
