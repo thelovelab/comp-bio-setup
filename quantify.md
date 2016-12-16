@@ -30,14 +30,18 @@ salmon index -t Homo_sapiens.GRCh38.cdna.all.fa -i Homo_sapiens.GRCh38.cdna.all.
 
 (This takes ~6 minutes.)
 
-Quantifying reads against this index looks like:
+Quantifying reads against this index might look like:
 
 ```
 salmon quant -i Homo_sapiens.GRCh38.cdna.all.fa_Salmon-0.7.2_index \
+  -l IU \
   -1 fastq/sample_1.fastq.gz \
   -2 fastq/sample_2.fastq.gz \
   -p 6 -o quants/sample
 ```
+
+The `-l IU` parameter specifies we have paired-end reads facing inward
+and an unstranded protocol. For other library types, see the Salmon website.
 
 See the workflow above for an example of how to incorporate this into
 a bash script across a number of samples.
