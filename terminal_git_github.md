@@ -10,8 +10,10 @@ It's good to learn how to use a terminal-based editor such as *emacs*
 or *vi*. The difficulty here is to learn a number of keyboard-based
 shortcuts, but in the long run it's advantageous to be able to edit
 scripts without using the mouse. Emacs can be connected to work with R
-via the [ESS](https://ess.r-project.org/) package (although much of
-this functionality is available through RStudio).
+via the [ESS](https://ess.r-project.org/) package. Much of this
+functionality is available through RStudio, but emacs has the
+advantage that it has very low latency when you are running it on the
+cluster, so the experience is seamless regardless of where you are working.
 
 ## Config file
 
@@ -35,7 +37,8 @@ first verified.
 Note that R and emacs also have config files: `~/.Rprofile` and
 `~/.emacs`.
 
-My config files are:
+My config files are linked below. You don't need to copy every line
+from here but you might find some parts useful.
 
 * [.bashrc](https://gist.github.com/mikelove/d96fb988db039250fb8d)
 * [.emacs](https://gist.github.com/mikelove/b0f4eb15a21387ddb534)
@@ -99,6 +102,15 @@ files in a hidden `.git` directory in the top directory of the repo.
 As long as this `.git` directory is not removed, any previous state
 can be recovered. It is also possible to have multiple branches, but
 you can explore this functionality on your own.
+
+## Using git within RStudio
+
+RStudio now has complete integration with git as well as a built-in
+terminal, so all of the above commands can be accomplished within the
+RStudio GUI. This is a great resource for setting up R, RStudio, git
+and GitHub to work together:
+
+<http://happygitwithr.com/>
 
 ## GitHub and Bitbucket as external repos
 

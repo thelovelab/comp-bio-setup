@@ -67,7 +67,7 @@ RStudio module on the cluster and work within an RStudio window. From
 my experience there is too much lag in the window update, so it
 restricts the speed of my typing / data analysis.
 
-In order to use emacs you can put in your `.bashrc`:
+In order to use emacs you can put in your `.bashrc` file:
 
 ```
 module load emacs
@@ -97,4 +97,14 @@ R script with `C-c C-n`. See this reference card for ESS keybindings:
 For editing data analysis R scripts or working on a new method, you
 should be saving your code in git repositories, and typically also
 syncing this with a BitBucket or GitHub remote server.
-See [the git page](terminal_github_git.md)...
+To use git on the cluster, you just need to have `module load git` in
+your `.bashrc` file. You will have to set up SSH keys on the cluster,
+to sync git repositories on the cluster with GitHub or BitBucket.
+You can follow the steps described on the [the git page](terminal_git_github.md)
+
+At the end, the ideal setup is to have GitHub repos on your laptop and
+the same repo on the cluster, and you will use `git pull` to keep all
+code up to date on all locations. You should `commit` and `push` your
+code daily, to avoid any lost work.
+
+
