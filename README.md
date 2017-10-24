@@ -2,6 +2,7 @@
 
 * [R, RStudio, and Bioconductor](r_bioc.md)
 * [Terminal, git, and GitHub](terminal_git_github.md)
+* [Cluster setup](cluster_setup.md)
 * *knitr and rmarkdown* for reproducible analyses
 * [downloading files](download.md) from European Nucleotide Archive
 * *FASTQC and MultiQC* for quality control of sequence data
