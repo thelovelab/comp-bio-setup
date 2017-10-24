@@ -100,7 +100,7 @@ syncing this with a BitBucket or GitHub remote server.
 To use git on the cluster, you just need to have `module load git` in
 your `.bashrc` file. You will have to set up SSH keys on the cluster,
 to sync git repositories on the cluster with GitHub or BitBucket.
-You can follow the steps described on the [the git page](terminal_git_github.md)
+You can follow the steps described on the [the git page](terminal_git_github.md).
 
 At the end, the ideal setup is to have GitHub repos on your laptop and
 the same repo on the cluster, and you will use `git pull` to keep all
