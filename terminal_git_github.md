@@ -95,6 +95,37 @@ can combine the `-a` and `-m` into a single command like so:
 git commit -am "changes to variance estimation"
 ```
 
+## Never add large data files to the repository
+
+It's very important not to add large files to the repository. Figures
+are fine, but generally you just want your git repository to have
+e.g. R code, scripts, Latex files, etc. Once large data files have
+been added with a `commit`, it's very difficult to remove them. You
+can un-`add` files simply by doing:
+
+```
+git reset <filename>
+```
+
+You can also make `git` ignore certain files by adding the following
+example lines to a `.gitignore` file:
+
+```
+*.rda
+*.gz
+data
+```
+
+In this example, any files ending in `.rda`, or `.gz` or in the `data`
+directory will be ignored. You then want to do:
+
+```
+git add .gitignore
+git commit -m "adding gitignore file"
+```
+
+## git logs
+
 You can use functions like `git log` to see previous commits. Using
 just these functions, you will always have a backup in case some text
 or files are lost or overwritten. The history is stored in binary
