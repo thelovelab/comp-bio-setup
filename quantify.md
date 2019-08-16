@@ -4,9 +4,11 @@ Salmon is a fast and accurate tool for quantifying trancript
 abundances, which can then be used to also generate gene-level
 quantifications.
 
-The latest binary for running Salmon can be found here:
+The latest release for running Salmon can be found here:
 
 <https://github.com/COMBINE-lab/salmon/releases>
+
+The linux binaries can be downloaded and run directly on the cluster.
 
 A workflow of how to run Salmon can be found here:
 
@@ -27,21 +29,38 @@ You should put the version number on the end of the index name (whatever
 version you are using, not 0.7.2).
 
 ```
-salmon index -t gencode.v27.transcripts.fa -i gencode.v27_salmon_0.7.2
+salmon index -t gencode.vXX.transcripts.fa -i gencode.vXX_salmon_x.y.z
 ```
 
 Quantifying reads against this index might look like:
 
 ```
-salmon quant -i gencode.v27_salmon_0.7.2 \
-  -l IU \
-  -1 fastq/sample_1.fastq.gz \
-  -2 fastq/sample_2.fastq.gz \
-  -p 6 -o quants/sample
+salmon quant -i gencode.vXX_salmon_x.y.z \
+  -l A \
+  --gcBias --validateMappings \
+  -1 fastq/sample1_1.fastq.gz \
+  -2 fastq/sample1_2.fastq.gz \
+  -p 6 -o quants/sample1
 ```
 
-The `-l IU` parameter specifies we have paired-end reads facing inward
-and an unstranded protocol. For other library types, see the Salmon website.
+I recommend using Snakemake to run Salmon across multiple files. My
+Snakemake file for running Salmon is here:
 
-See the workflow above for an example of how to incorporate this into
-a bash script across a number of samples.
+<https://gist.github.com/mikelove/5a8134e57f652f970f1a176efc900cbe>
+
+To run Snakemake on the cluster I use the following bash script
+`snake.sh`:
+
+```
+#!/bin/bash
+#
+#SBATCH --job-name=snake
+#SBATCH --time=1440
+#SBATCH --mem=1000
+
+module load python/3.6.6
+snakemake -j 4 --latency-wait 30 --cluster "sbatch --mem=10000 -N 1 -n 6"
+```
+
+The `-j 4` indicates to run 4 jobs at a time, each one with 10 Gb, and
+with 6 threads each.
