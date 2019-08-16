@@ -23,8 +23,8 @@ Now, load up RStudio. To install Bioconductor, you type the following
 lines of code into the R shell:
 
 ```{r}
-source("http://bioconductor.org/biocLite.R")
-biocLite()
+install.packages("BiocManager")
+BiocManager::install()
 ```
 
 If this finishes without an error, you're set up.

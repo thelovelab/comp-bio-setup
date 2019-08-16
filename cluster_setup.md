@@ -1,13 +1,13 @@
 # Cluster setup (specific to UNC)
 
-Our lab primarily uses the killdevil cluster for computing. While you
+Our lab primarily uses the longleaf cluster for computing. While you
 may sometimes work locally on your laptop, you will eventually want to
 also have the same code on the cluster, so you can run simulations for
 example, without having to keep your laptop open and running. You may
-also need to work on killdevil if you have data that cannot be
+also need to work on longleaf if you have data that cannot be
 downloaded to a laptop.
 
-The main pieces you need to work on killdevil are:
+The main pieces you need to work on longleaf are:
 
 * X11 forwarding for when you SSH (so you can see plot windows)
 * Some way of editing and running R code on the cluster,
@@ -19,7 +19,7 @@ The main pieces you need to work on killdevil are:
 
 For Windows machines, you need to download and install an X11
 application, such as Xming. (You may need to open Xming manually for
-X11 forwarding to work when you connect to killdevil.)
+X11 forwarding to work when you connect to longleaf.)
 
 <https://sourceforge.net/projects/xming/>
 
@@ -28,18 +28,18 @@ when you start an X11 forwarding session.
 
 <https://www.xquartz.org/>
 
-Then when you ssh to killdevil, you can use the following shell
+Then when you ssh to longleaf, you can use the following shell
 command, where the -Y flag enables trusted X11 forwarding
 
 ```
-ssh -Y username@killdevil.unc.edu
+ssh -Y username@longleaf.unc.edu
 ```
 
 To test if this works, you can try the following in an interactive
 shell and see if a plot open up.
 
 ```
-module load r/3.4.1
+module load r
 R
 > plot(1:10)
 ```
@@ -49,16 +49,15 @@ R
 First, as always, you need to load an interactive shell with:
 
 ```
-bsub -Is /bin/bash
+srun --x11=first --pty --mem=5000 --time=360 /bin/bash
 ```
 
 I have these commands in my `.bashrc` file as aliases, so I don't have
 to type this out each time:
 
 ```
-alias inter='bsub -Is /bin/bash'
-alias interbig='bsub -Is -M 10 /bin/bash'
-alias interhuge='bsub -Is -M 20 /bin/bash'
+alias inter='srun --x11=first --pty --mem=5000 --time=360 /bin/bash'
+alias interbig='srun --x11=first --pty --mem=20000 --time=360 /bin/bash'
 ```
 
 For editing scripts and running R code this, I personally use emacs
@@ -67,15 +66,25 @@ RStudio module on the cluster and work within an RStudio window. From
 my experience there is too much lag in the window update, so it
 restricts the speed of my typing / data analysis.
 
-In order to use emacs you can put in your `.bashrc` file:
+Note that there are multiple versions of R actually on the
+cluster. You can see the available versions:
 
 ```
-module load emacs
-module load ess
-module load r/3.4.1
+module avail 2>&1 >/dev/null | grep ' r/'
 ```
 
-Then in your `.emacs` file, add:
+To load the latest version you can use, e.g.:
+
+```
+module load r/x.y.z
+```
+
+You can put the `module load` commands into your `~/.bashrc` file so
+that it loads every time.
+
+To use emacs with ESS, put `module load ess` into your `~/.bashrc` file.
+
+Then in your `~/.emacs` file, add:
 
 ```
 (require 'ess-site)
@@ -97,8 +106,8 @@ R script with `C-c C-n`. See this reference card for ESS keybindings:
 For editing data analysis R scripts or working on a new method, you
 should be saving your code in git repositories, and typically also
 syncing this with a BitBucket or GitHub remote server.
-To use git on the cluster, you just need to have `module load git` in
-your `.bashrc` file. You will have to set up SSH keys on the cluster,
+
+You will have to set up SSH keys on the cluster,
 to sync git repositories on the cluster with GitHub or BitBucket.
 You can follow the steps described on the [the git page](terminal_git_github.md).
 
@@ -106,5 +115,3 @@ At the end, the ideal setup is to have GitHub repos on your laptop and
 the same repo on the cluster, and you will use `git pull` to keep all
 code up to date on all locations. You should `commit` and `push` your
 code daily, to avoid any lost work.
-
-
