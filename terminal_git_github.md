@@ -48,9 +48,8 @@ from here but you might find some parts useful.
 
 *git* is a useful program for saving text files or other small files
 (e.g. images) and tracking changes to these over time. There are
-alternative version control systems (*svn* for example is used by the
-R and Bioconductor projects), but *git* is very popular and commonly
-used among computational biologists.
+alternative version control systems, but *git* is very popular and 
+commonly used among computational biologists.
  
 It's helpful to download a *git cheat sheet* off the internet so you
 can remember the basic functions. There are many functions of git,
