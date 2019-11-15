@@ -163,6 +163,9 @@ SSH keys (as opposed to HTTPS) for interacting with external repos:
 * [Set up SSH key with GitHub](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 * [Set up SSH key with Bitbucket](https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html)
 
+**Remember**: then you should always clone with SSH as opposed to 
+HTTPS when cloning from GitHub.
+
 Once you have done this, you have two choices: 
 
 1. to start by cloning an empty repo
