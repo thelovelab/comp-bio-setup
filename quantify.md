@@ -14,7 +14,7 @@ A workflow of how to run Salmon can be found here:
 
 <https://combine-lab.github.io/salmon/getting_started/>
 
-## Index the reference transcripts
+## Indexing the reference transcripts
 
 First you'll need to download or generate a FASTA file of all of the
 reference transcript sequences. You can download a FASTA file of transcript
