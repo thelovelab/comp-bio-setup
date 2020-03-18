@@ -8,14 +8,16 @@ The latest release for running Salmon can be found here:
 
 <https://github.com/COMBINE-lab/salmon/releases>
 
-The linux binaries can be downloaded and run directly on the cluster.
+The linux binaries can be downloaded and run directly on the cluster. It's a good idea to just use the *latest* version of Salmon at the beginning of a project. Note that you have to create a new *index* if you use a new version of Salmon.
 
 A workflow of how to run Salmon can be found here:
 
 <https://combine-lab.github.io/salmon/getting_started/>
 
+## Index the reference transcripts
+
 First you'll need to download or generate a FASTA file of all of the
-transcript sequences. You can download a FASTA file of transcript
+reference transcript sequences. You can download a FASTA file of transcript
 sequence from
 [GENCODE](https://www.gencodegenes.org/). You can also generate such a
 file using a tool such as
@@ -23,8 +25,8 @@ file using a tool such as
 with a GTF file and a genome FASTA file. It's a good idea to download
 the GTF file whenever you download a transcripts FASTA file.
 
-Then, the two Salmon steps are generating an index, and then quantifying each
-sample against that index. Good to use a descriptive index name.
+Then, the two Salmon steps are 1) generating an **index** (only needs to happen once), 
+and then 2) **quant**ifying each sample against the index. Good to use a descriptive index name.
 You should put the version number on the end of the index name (whatever 
 version you are using, not 0.7.2).
 
@@ -32,15 +34,16 @@ version you are using, not 0.7.2).
 salmon index -t gencode.vXX.transcripts.fa -i gencode.vXX_salmon_x.y.z
 ```
 
-Quantifying reads against this index might look like:
+## Quantifying reads 
+
+Quantifying reads with this index might look like:
 
 ```
 salmon quant -i gencode.vXX_salmon_x.y.z \
-  -l A \
-  --gcBias --validateMappings \
+  -l A --gcBias \
   -1 fastq/sample1_1.fastq.gz \
   -2 fastq/sample1_2.fastq.gz \
-  -p 6 -o quants/sample1
+  -p 8 -o quants/sample1
 ```
 
 I recommend using Snakemake to run Salmon across multiple files. My
@@ -59,8 +62,8 @@ To run Snakemake on the cluster I use the following bash script
 #SBATCH --mem=1000
 
 module load python/3.6.6
-snakemake -j 4 --latency-wait 30 --cluster "sbatch --mem=10000 -N 1 -n 6"
+snakemake -j 4 --latency-wait 30 --cluster "sbatch --mem=10000 -N 1 -n 8"
 ```
 
 The `-j 4` indicates to run 4 jobs at a time, each one with 10 Gb, and
-with 6 threads each.
+with 8 threads each.
