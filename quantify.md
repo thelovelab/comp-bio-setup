@@ -30,6 +30,9 @@ and then 2) **quant**ifying each sample against the index. Good to use a descrip
 You should put the version number on the end of the index name (whatever 
 version you are using, not 0.7.2).
 
+Salmon indexing might look like this (this needs to be run either as a 
+cluster job, see below, or from an interactive session).
+
 ```
 salmon index -t gencode.vXX.transcripts.fa -i gencode.vXX_salmon_x.y.z
 ```
@@ -45,6 +48,13 @@ salmon quant -i gencode.vXX_salmon_x.y.z \
   -2 fastq/sample1_2.fastq.gz \
   -p 8 -o quants/sample1
 ```
+
+Except, when working on the cluster we have to submit jobs to the cluster.
+Therefore we write a bash script to submit to the cluster. However,
+with bash scripts, we have to run a job for each sample, and it's
+possible to make a mistake, e.g. if we change the sample name in the reads
+but we forget to change the sample name of the output directory. 
+Therefore, it's safer and a better idea to run many jobs *programmatically*:
 
 I recommend using Snakemake to run Salmon across multiple files. My
 Snakemake file for running Salmon is here:
@@ -66,4 +76,4 @@ snakemake -j 4 --latency-wait 30 --cluster "sbatch --mem=10000 -N 1 -n 8"
 ```
 
 The `-j 4` indicates to run 4 jobs at a time, each one with 10 Gb, and
-with 8 threads each.
+with 8 threads for each job each.
