@@ -14,6 +14,7 @@ The main pieces you need to work on longleaf are:
 * Some way of editing and running R code on the cluster,
   either [ESS](https://ess.r-project.org/)
   or [RStudio](https://www.rstudio.com/products/RStudio/) 
+* Submitting jobs to cluster queue
 * Version control using [git](terminal_git_github.md).
 
 ## OnDemand for interactive work
@@ -111,6 +112,12 @@ R script with `C-c C-n`. See this reference card for ESS keybindings:
 
 <http://ess.r-project.org/refcard.pdf>
 
+## Submitting jobs to the cluster queue
+
+For an applied example of submitting jobs, see the other document on 
+quantification of RNA-seq reads:
+
+<https://github.com/mikelove/comp-bio-setup/blob/master/quantify.md>
 
 ## Version control using git
 
