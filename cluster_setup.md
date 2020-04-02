@@ -9,11 +9,22 @@ downloaded to a laptop.
 
 The main pieces you need to work on longleaf are:
 
+* Use OnDemand for interactive work with RStudio (new as of 2020), or...
 * X11 forwarding for when you SSH (so you can see plot windows)
 * Some way of editing and running R code on the cluster,
   either [ESS](https://ess.r-project.org/)
   or [RStudio](https://www.rstudio.com/products/RStudio/) 
 * Version control using [git](terminal_git_github.md).
+
+## OnDemand for interactive work
+
+As of 2020, Research Computing at UNC has made a very nice solution
+for interactive work on the cluster, which makes the piece below about
+X11 forwarding and ESS irrelevant. For various data science applications,
+first see if they are supported here, as this will be a much easier interface
+for most students. If you are off campus you will need to connect via VPN first.
+
+<https://ondemand.rc.unc.edu>
 
 ## X11 forwarding
 
