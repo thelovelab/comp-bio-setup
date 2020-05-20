@@ -1,4 +1,4 @@
-# Setting up g2gtools on longleaf cluster:
+# Setting up g2gtools on longleaf cluster
 
 ```
 module load anaconda
