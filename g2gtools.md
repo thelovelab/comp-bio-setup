@@ -39,7 +39,8 @@ g2gtools convert -c <output.vci> -i <reference.coordinates.gtf> -o <sample.gtf>
 ```
 g2gtools gtf2db -i <sample.gtf> -o <sample.db>
 ```
-Note the process time is approximately 1 min/100,000 records. It is recommended to submit a bash file if the record number is large
+Note the process time is approximately 1 min/100,000 records. It is recommended to submit a bash file if the record number is large.
+
 The record number can be checked by using 
 ```
 wc -l <sample.gtf>
