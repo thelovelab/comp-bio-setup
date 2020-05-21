@@ -44,5 +44,9 @@ The record number can be checked by using
 ```
 wc -l <sample.gtf>
 ```
-
-
+- Extract exons, transcripts, and gene regions from the custom sample genome
+```
+g2gtools extract -i <transform.fa> -db <sample.db> --exons > <sample.exons.fa>
+g2gtools extract -i <transform.fa> -db <sample.db> --transcripts > <sample.transcripts.fa>
+g2gtools extract -i <transform.fa> -db <sample.db> --genes > <sample.genes.fa>
+```
