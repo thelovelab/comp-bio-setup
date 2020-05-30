@@ -9,7 +9,7 @@
 * [downloading files](download.md) from European Nucleotide Archive
 * [quantify transcripts with RNA-seq](quantify.md) 
 * [setting up g2gtools on cluster](g2gtools.md)
-* *FASTQC and MultiQC* for quality control of sequence data
-* *aligning sequencing reads* to genome
+* [aligning sequencing reads](align.md) to genome
+* *FASTQC and MultiQC* for quality control of sequence datas
 * *IGV* for exploring genomic files
 
