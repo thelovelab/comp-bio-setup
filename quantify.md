@@ -53,6 +53,7 @@ Quantifying reads with this index might* look like this below
 ```
 salmon quant \
   -l A --gcBias -p 8 \
+  --numGibbsSamples 30 --thinningFactor 100 \
   -i gencode.vXX_salmon_x.y.z \
   -o quants/sample1 \
   -1 fastq/sample1_1.fastq.gz \
@@ -80,6 +81,7 @@ The batch script might look like:
 
 /path/to/salmon_x.y.z/bin/salmon quant \
   -l A --gcBias -p 8 \
+  --numGibbsSamples 30 --thinningFactor 100 \
   -i gencode.vXX_salmon_x.y.z \
   -o quants/sample1 \
   -1 fastq/sample1_1.fastq.gz \
