@@ -80,3 +80,65 @@ ending (see quantification example).
 
 What about if we don't have input files per se but want to run a
 simulation across a grid of parameter values?
+
+We can do this with a `config.json` file. For example, let's say we
+want to compute the mean of some numbers, from different
+distributions. We can make a config file:
+
+```
+dist : [norm, unif, exp]
+n : [5,10]
+```
+
+Then we can write an R script that takes two arguments, the
+distribution and the sample size:
+
+```{r}
+cmd_args=commandArgs(TRUE)
+
+dist <- cmd_args[1] # dist
+n <- as.numeric(cmd_args[2]) # sample size
+out <- cmd_args[3] # output filename
+
+if (dist == "norm") {
+  x <- rnorm(n)
+} else if (dist == "unif") {
+  x <- runif(n)
+} else if (dist == "exp") {
+  x <- rexp(n)
+}
+dat <- data.frame(dist=dist,x=x)
+write.table(dat, file=out, row.names=FALSE, col.names=FALSE, quote=FALSE, sep=",")
+```
+
+And a Snakefile:
+
+```
+configfile: "config.json"
+
+rule all:
+    input:
+        expand("dist_{dist}_n_{n}.csv", dist=config["dist"], n=config["n"])
+
+rule make_data:
+    output: "dist_{dist}_n_{n}.csv"
+    shell:
+        "R CMD BATCH --no-save --no-restore '--args {wildcards.dist} {wildcards.n} {output}' " 
+        " make_data.R log_dist_{wildcards.dist}_n_{wildcards.n}.Rout"
+```
+
+## Reproducibility
+
+One problem with our above script is that we won't be able to
+reproduce those random numbers again because our R script did not set
+a seed with `set.seed()`. If we use the same value for each
+simulation, e.g. `set.seed(5)`, then the same numbers would be used
+for the `n=5` and `n=10` case, which is typically undesirable. We
+could instead use the combination of `dist` and `n` to create unique
+seed integers, via a hash function:
+
+```{r}
+library(digest)
+seed <- digest2int(paste0(dist,n), seed=0L)
+set.seed(seed)
+```

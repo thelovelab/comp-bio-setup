@@ -1,0 +1,11 @@
+configfile: "config.json"
+
+rule all:
+    input:
+        expand("dist_{dist}_n_{n}.csv", dist=config["dist"], n=config["n"])
+
+rule make_data:
+    output: "dist_{dist}_n_{n}.csv"
+    shell:
+        "R CMD BATCH --no-save --no-restore '--args {wildcards.dist} {wildcards.n} {output}' " 
+        " make_data.R log_dist_{wildcards.dist}_n_{wildcards.n}.Rout"

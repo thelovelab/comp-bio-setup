@@ -1,0 +1,3 @@
+*.csv
+*.Rout
+.snakemake
