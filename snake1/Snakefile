@@ -1,0 +1,14 @@
+rule all:
+  input: "final.txt"
+
+rule make_txt:
+  input: "{sample}.foo"
+  output: "{sample}.txt"
+  shell: "mv {input} {output}"
+
+rule make_final:
+  input: "a.txt",
+         "b.txt"
+  output: "final.txt"
+  shell:
+      "cat a.txt b.txt > final.txt"

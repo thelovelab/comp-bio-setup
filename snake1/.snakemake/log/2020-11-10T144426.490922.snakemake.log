@@ -1,0 +1,3 @@
+NameError in line 2 of /Users/love/proj/comp-bio-setup/snake/Snakefile:
+name 'final' is not defined
+  File "/Users/love/proj/comp-bio-setup/snake/Snakefile", line 2, in <module>

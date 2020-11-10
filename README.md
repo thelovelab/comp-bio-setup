@@ -3,6 +3,7 @@
 * [R, RStudio, and Bioconductor](r_bioc.md)
 * [Terminal, git, and GitHub](terminal_git_github.md)
 * [Cluster setup](cluster_setup.md) - specific to Longleaf cluster at UNC
+* [Snakemake](snakemake.md)
 
 # Other details
 
