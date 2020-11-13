@@ -30,7 +30,7 @@ rule all:
 rule make_txt:
   input: "{sample}.foo"
   output: "{sample}.txt"
-  shell: "mv {input} {output}"
+  shell: "cp {input} {output}"
 
 rule make_final:
   input: "a.txt", 
