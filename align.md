@@ -29,3 +29,6 @@ samtools view -bS file.sam > file.bam
 samtools sort file.bam -o file.sorted.bam
 samtools index file.sorted.bam
 ```
+
+Note: if you are generating simulated reads with Polyester, 
+you will need to add `-f` for FASTA input.
