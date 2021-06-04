@@ -1,4 +1,4 @@
-# Quantify transcripts with RNA-seq
+# Quantify transcript expression from RNA-seq reads
 
 Salmon is a fast and accurate tool for quantifying trancript
 abundances, which can then be used to also generate gene-level
@@ -72,7 +72,7 @@ salmon quant \
 ```
 
 \* Except, when working on the cluster we want to submit jobs to the cluster!
-**Never run Salmon or any other jobs on the login node**, and you don't want
+**Never run Salmon or any other programs on the login node**, and you don't want
 to be sitting by your laptop during an interactive job quantifying
 dozens of samples. Therefore we could write a *bash script* to submit
 to the cluster, or use Snakemake. First I'll show what that bash
@@ -108,18 +108,24 @@ but we forget to change the sample name of the output directory.
 Therefore, it's safer and a better idea to run many jobs *programmatically*
 with [Snakemake](https://snakemake.readthedocs.io/en/stable/).
 
-I recommend using Snakemake to run Salmon across multiple files. 
+I therefore recommend using Snakemake to run Salmon across multiple
+files.
+
+## Snakemake
 
 I have two Snakemake files for running Salmon, that can be found at
 the link below.
 
 1. `Snakefile` gives an example of how to run Salmon indexing and
-   quantification over a number of files.
+   quantification over a number of files. First make the `quants`
+   directory before running.
 2. `Snakefile_with_QC` gives an example of running both Salmon
    indexing/quantification as well as QC with 
    [FASTQC and MultiQC](fastq_multiqc.md), all compiled into a single
    report. Note that to run this, you need to rename the file to
-   `Snakefile` and load the FASTQC and MultiQC modules on the cluster.
+   `Snakefile` and load the FASTQC and MultiQC modules on the
+   cluster. Also, first make the `quants`, `qc`, and `multiqc`
+   directories before running.
 
 <https://gist.github.com/mikelove/5a8134e57f652f970f1a176efc900cbe>
 
@@ -140,7 +146,7 @@ snakemake -j 4 --latency-wait 30 --cluster "sbatch --mem=10000 -N 1 -n 12"
 The `-j 4` indicates to run 4 jobs at a time, each one with 10 Gb, and
 with 12 threads for each job each.
 
-# Index job
+## Index job (if not using Snakemake)
 
 For completeness, a bash script for indexing:
 

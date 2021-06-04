@@ -27,6 +27,8 @@ MultiQC report building all together:
 
 <https://gist.github.com/mikelove/5a8134e57f652f970f1a176efc900cbe#file-snakefile_with_qc>
 
+Note that you need to first create the directories `quants`, `qc`, and `multiqc`.
+
 You could then run this program from the command line with, e.g.:
 
 ```
