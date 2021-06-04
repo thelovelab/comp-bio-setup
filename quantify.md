@@ -121,7 +121,7 @@ the link below.
    directory before running.
 2. `Snakefile_with_QC` gives an example of running both Salmon
    indexing/quantification as well as QC with 
-   [FASTQC and MultiQC](fastq_multiqc.md), all compiled into a single
+   [FASTQC and MultiQC](fastqc_multiqc.md), all compiled into a single
    report. Note that to run this, you need to rename the file to
    `Snakefile` and load the FASTQC and MultiQC modules on the
    cluster. Also, first make the `quants`, `qc`, and `multiqc`
