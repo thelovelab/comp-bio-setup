@@ -13,7 +13,15 @@ cluster. It's a good idea to just use the *latest* version of Salmon
 at the beginning of a project. Note that you have to create a new
 *index* if you use a new version of Salmon.
 
-A workflow of how to run Salmon can be found here:
+**Recommendation**: at the bottom of this file, I provide a
+`Snakefile` which is the easiest way to run Salmon on the cluster
+(everything is taken care of for you). So read over the following for
+understanding what the steps look like, but for a project with many
+files you shouldn't be running the steps one-by-one or with bash
+scripts, but using Snakemake.
+
+Also, a workflow from the Salmon authors on how to run Salmon can be
+found here: 
 
 <https://combine-lab.github.io/salmon/getting_started/>
 
