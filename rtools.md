@@ -1,20 +1,22 @@
-# ReportingTools 
+# ReportingTools
 
-ReportingTools can be used to generated nice HTML output of DESeq2 Results with boxplot. The following code demonstrates how to add human gene symbols in the HTML output when working with real data
+Author: Euphy Wu
 
-```R
+*ReportingTools* can be used to generated nice HTML output of DESeq2
+results with boxplot. The following code demonstrates how to add human
+gene symbols in the HTML output when working with real data.
+
+```{r}
 library(tximport)
 library(dplyr)
-library("Biostrings")
+library(Biostrings)
 library(readr)
 library(org.Hs.eg.db)
 library(DESeq2)
 
-
 txi <- tximport(files, type="salmon", tx2gene=tx2gene, txOut=FALSE, varReduce = TRUE)
 
-# Deseq2 on two way analysis
-
+# DESeq2 on two way analysis
 condition <- factor(c(rep("control",8),rep("knockout",7)))
 ddsTwoWay <- DESeqDataSetFromTximport(txi, as.data.frame(condition), ~condition)
 colData(ddsTwoWay)$condition <- factor(colData(ddsTwoWay)$condition, levels=c("control","knockout"))
@@ -32,7 +34,6 @@ TwoWayResults$CHREND <- mapIds(org.Hs.eg.db, sub("\\..*", "", rownames(TwoWayRes
                                , "CHRLOCEND", "ENSEMBL", multiVals="first")
 
 # For generate HTML Report using ReportingTool
-
 library(ReportingTools)
 DummyTwoWay <- ddsTwoWay
 
@@ -63,4 +64,3 @@ finish(des2Report)
 
 # Same procedure can be used for rowname=NA observations but we cannot use annotation.db in publish().
 ```
-

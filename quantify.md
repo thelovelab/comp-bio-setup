@@ -8,7 +8,10 @@ The latest release for running Salmon can be found here:
 
 <https://github.com/COMBINE-lab/salmon/releases>
 
-The linux binaries can be downloaded and run directly on the cluster. It's a good idea to just use the *latest* version of Salmon at the beginning of a project. Note that you have to create a new *index* if you use a new version of Salmon.
+The Linux binaries can be downloaded and run directly on the
+cluster. It's a good idea to just use the *latest* version of Salmon
+at the beginning of a project. Note that you have to create a new
+*index* if you use a new version of Salmon.
 
 A workflow of how to run Salmon can be found here:
 
@@ -52,8 +55,8 @@ Quantifying reads with this index might* look like this below
 
 ```
 salmon quant \
-  -l A --gcBias -p 8 \
-  --numGibbsSamples 30 --thinningFactor 100 \
+  -l A --gcBias -p 12 \
+  --numGibbsSamples 20 --thinningFactor 100 \
   -i gencode.vXX_salmon_x.y.z \
   -o quants/sample1 \
   -1 fastq/sample1_1.fastq.gz \
@@ -74,14 +77,14 @@ The batch script might look like:
 #SBATCH --job-name=quant
 #SBATCH --time=60
 #SBATCH --mem=10000
-#SBATCH -n 8
+#SBATCH -n 12
 #SBATCH -N 1
 #SBATCH --mail-user=you@email.com
 #SBATCH --mail-type=ALL
 
 /path/to/salmon_x.y.z/bin/salmon quant \
-  -l A --gcBias -p 8 \
-  --numGibbsSamples 30 --thinningFactor 100 \
+  -l A --gcBias -p 12 \
+  --numGibbsSamples 20 --thinningFactor 100 \
   -i gencode.vXX_salmon_x.y.z \
   -o quants/sample1 \
   -1 fastq/sample1_1.fastq.gz \
@@ -96,8 +99,18 @@ but we forget to change the sample name of the output directory.
 Therefore, it's safer and a better idea to run many jobs *programmatically*
 with [Snakemake](https://snakemake.readthedocs.io/en/stable/).
 
-I recommend using Snakemake to run Salmon across multiple files. My
-Snakemake file for running Salmon is here:
+I recommend using Snakemake to run Salmon across multiple files. 
+
+I have two Snakemake files for running Salmon, that can be found at
+the link below.
+
+1. `Snakefile` gives an example of how to run Salmon indexing and
+   quantification over a number of files.
+2. `Snakefile_with_QC` gives an example of running both Salmon
+   indexing/quantification as well as QC with 
+   [FASTQC and MultiQC](fastq_multiqc.md), all compiled into a single
+   report. Note that to run this, you need to rename the file to
+   `Snakefile` and load the FASTQC and MultiQC modules on the cluster.
 
 <https://gist.github.com/mikelove/5a8134e57f652f970f1a176efc900cbe>
 
@@ -111,12 +124,12 @@ To run Snakemake on the cluster I use the following bash script
 #SBATCH --time=1440
 #SBATCH --mem=1000
 
-module load python/3.6.6
-snakemake -j 4 --latency-wait 30 --cluster "sbatch --mem=10000 -N 1 -n 8"
+module load python
+snakemake -j 4 --latency-wait 30 --cluster "sbatch --mem=10000 -N 1 -n 12"
 ```
 
 The `-j 4` indicates to run 4 jobs at a time, each one with 10 Gb, and
-with 8 threads for each job each.
+with 12 threads for each job each.
 
 # Index job
 
@@ -127,11 +140,11 @@ For completeness, a bash script for indexing:
 #
 #SBATCH --job-name=index
 #SBATCH --time=60
-#SBATCH --mem=20000
-#SBATCH -n 8
+#SBATCH --mem=10000
+#SBATCH -n 12
 #SBATCH -N 1
 #SBATCH --mail-user=you@email.com
 #SBATCH --mail-type=ALL
 
-/path/to/salmon_x.y.z/bin/salmon index -p 8 --gencode -t gencode.vXX.transcripts.fa -i gencode.vXX_salmon_x.y.z
+/path/to/salmon_x.y.z/bin/salmon index -p 12 --gencode -t gencode.vXX.transcripts.fa -i gencode.vXX_salmon_x.y.z
 ```
