@@ -51,7 +51,7 @@ Salmon indexing might look like this (this needs to be run either as a
 cluster job [best option], see below, or at least from an interactive session).
 
 ```
-salmon index --gencode -t gencode.vXX.transcripts.fa -i gencode.vXX_salmon_x.y.z
+salmon index --gencode -t gencode.vABC.transcripts.fa -i gencode.vABC-salmon_x.y.z
 ```
 
 (The `--gencode` is a special argument for GENCODE, which helps clean up the transcript names.)
@@ -65,7 +65,7 @@ Quantifying reads with this index might* look like this below
 salmon quant \
   -l A --gcBias -p 12 \
   --numGibbsSamples 20 --thinningFactor 100 \
-  -i gencode.vXX_salmon_x.y.z \
+  -i gencode.vABC-salmon_x.y.z \
   -o quants/sample1 \
   -1 fastq/sample1_1.fastq.gz \
   -2 fastq/sample1_2.fastq.gz
@@ -93,7 +93,7 @@ The batch script might look like:
 /path/to/salmon_x.y.z/bin/salmon quant \
   -l A --gcBias -p 12 \
   --numGibbsSamples 20 --thinningFactor 100 \
-  -i gencode.vXX_salmon_x.y.z \
+  -i gencode.vABC-salmon_x.y.z \
   -o quants/sample1 \
   -1 fastq/sample1_1.fastq.gz \
   -2 fastq/sample1_2.fastq.gz
@@ -154,5 +154,5 @@ For completeness, a bash script for indexing:
 #SBATCH --mail-user=you@email.com
 #SBATCH --mail-type=ALL
 
-/path/to/salmon_x.y.z/bin/salmon index -p 12 --gencode -t gencode.vXX.transcripts.fa -i gencode.vXX_salmon_x.y.z
+/path/to/salmon_x.y.z/bin/salmon index -p 12 --gencode -t gencode.vABC.transcripts.fa -i gencode.vABC-salmon_x.y.z
 ```
