@@ -71,11 +71,12 @@ salmon quant \
   -2 fastq/sample1_2.fastq.gz
 ```
 
-* Except, when working on the cluster we want to submit jobs to the cluster!
-Never run Salmon index or quant on the login node, and you don't want
-to be sitting by your laptop during an interactive job quantifying 50 samples.
-Therefore we could write a *bash script* to submit to the cluster. First I'll show 
-what that would look like, then I'll give a better solution called Snakemake.
+\* Except, when working on the cluster we want to submit jobs to the cluster!
+**Never run Salmon or any other jobs on the login node**, and you don't want
+to be sitting by your laptop during an interactive job quantifying
+dozens of samples. Therefore we could write a *bash script* to submit
+to the cluster, or use Snakemake. First I'll show what that bash
+script would look like, then I'll give the Snakemake solution.
 
 The batch script might look like:
 
