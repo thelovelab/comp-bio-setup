@@ -3,7 +3,8 @@ We can align reads to the genome using a software such as
 
 Download the appropriate index from the hisat2 website to our 
 annotation directory, and then run `tar -xvf` on the file that 
-you download (it will create a directory).
+you download (it will create a directory). Note that `grch38` (human)
+is already downloaded to our lab space (as shown below).
 
 A simple bash script for running hisat2 on some paired-end reads
 is then:
@@ -20,7 +21,7 @@ is then:
 module load hisat2
 module load samtools
 
-hisat2 -p 12 -x hisat2_grch37_snp/genome_snp \
+hisat2 -p 12 -x /proj/milovelab/anno/grch38/genome \
   -1 reads_01.fastq.gz \
   -2 reads_02.fastq.gz \
   -S file.sam
