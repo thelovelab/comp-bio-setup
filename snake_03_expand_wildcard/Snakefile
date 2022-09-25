@@ -1,0 +1,11 @@
+configfile: "config.json"
+
+SAMPLES, = glob_wildcards("{sample}_1.txt")
+
+rule all:
+    input: expand("{sample}.final", sample=SAMPLES)
+
+rule process:
+    input: expand("{{sample}}_{lane}.txt", lane=config["lanes"])
+    output: "{sample}.final"
+    shell: "cat {input} > {output}
