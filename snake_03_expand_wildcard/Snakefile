@@ -8,4 +8,4 @@ rule all:
 rule process:
     input: expand("{{sample}}_{lane}.txt", lane=config["lanes"])
     output: "{sample}.final"
-    shell: "cat {input} > {output}
+    shell: "cat {input} > {output}"
