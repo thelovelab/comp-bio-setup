@@ -1,4 +1,4 @@
-cmd_args=commandArgs(TRUE)
+cmd_args <- commandArgs(TRUE)
 
 dist <- cmd_args[1] # dist
 n <- as.numeric(cmd_args[2]) # sample size
