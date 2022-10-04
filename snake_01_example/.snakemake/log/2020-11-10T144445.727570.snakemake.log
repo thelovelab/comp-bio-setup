@@ -1,5 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 4 of /Users/love/proj/comp-bio-setup/snake/Snakefile:
-Missing input files for rule make_final:
-b = b.txt
-a.txt
